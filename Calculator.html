@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>Calculator</title>
+<style>
+    body {
+        animation: color-change 16s infinite;
+        height: 100vh;
+        margin: 0;
+    }
+    @keyframes color-change {
+        0% {
+            background-color: red;
+        }
+        20% {
+            background-color: orange;
+        }
+        40% {
+            background-color: yellow;
+        }
+        60% {
+            background-color: green;
+        }
+        80% {
+            background-color: blue;
+        }
+        100% {
+            background-color: pink;
+        }
+        120% {
+            background-color: purple;
+        }
+        140% {
+            background-color: white;
+        }
+        160% {
+            background-color: lightgreen;
+        }
+    }
+    #res {
+        color: red;
+        font-size: 30px;
+        width: 100%;
+        height: 500px;
+        background-color: #6DFFDB;
+        text-align: center;
+        border-radius: none;
+        border: 5px solid black;
+        box-shadow: none;
+    }
+    .calculator {
+        width: 280px;
+        height: 500px;
+        margin: 30px auto;
+        padding: 20px;
+        border: 10px ridge black;
+        border-radius: 5px;
+        animation: slide 5s linear infinite;
+    }
+    #display {
+        width: 100%;
+        height: 40px;
+        margin-bottom: 20px;
+        padding: 10px;
+        font-size: 24px;
+        color: #000;
+        text-align: center;
+        border-radius: 5px;
+        font-family: Georgia;
+        background-color: lightgreen;
+        border: 4px solid #000;
+    }
+    #display:active {
+        border: 4px solid #1AB100;
+        transform: scale(1.6);
+        transition: 0.6s;
+    }
+    .buttons {
+        display: grid;
+        grid-template-columns: repeat(4, 0.4fr);
+        grid-gap: 4px;
+    }
+    button {
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        box-shadow: 6px 6px 10px #000;
+        height: 40px;
+        transition: 0.6s;
+        font-size: 18px;
+    }
+    button:active {
+        height: 40px;
+        padding: 12px;
+        font-size: 20px;
+        border: none;
+        cursor: pointer;
+        text-shadow: none;
+        transition: 0.6s;
+        transform: scale(2);
+        border-radius: 8px;
+    }
+    .operator {
+        border: 2px solid black;
+        background-color: orange;
+        color: #fff;
+        height: 60px;
+        box-shadow: 6 6 20px #000;
+        width: 60px;
+        border-radius: 50%;
+    }
+
+    .operator:active {
+        border-radius: 50%;
+        box-shadow: 6 6 20px #000;
+        height: 60px;
+        width: 60px;
+    }
+
+    .clear {
+        grid-column: 1 / -1;
+        background-color: orange;
+        border: 3px solid black;
+        color: #fff;
+    }
+    .clear:active {
+        grid-column: 1 / -1;
+        background-color: #fff;
+        border: none;
+        box-shadow: 6 6 20px #000;
+        padding: 12px;
+        transform: scale(1.6);
+        color: orange;
+    }
+    .number {
+        border: 2px solid black;
+        background-color: #00fff0;
+        border-radius: 50%;
+        height: 60px;
+        width: 60px;
+        box-shadow: 6 6 20px #000;
+    }
+
+    .number:active {
+        border-radius: 50%;
+        height: 60px;
+        width: 60px;
+        box-shadow: 6 6 20px #000;
+    }
+
+    #a {
+        text-align: center;
+        font-size: 15px;
+        box-shadow: none;
+        text-shadow: none;
+    }
+    #equal {
+        background-color: red;
+        color: #ffffff;
+    }
+    #rb {
+        border: 2px solid black;
+        background-color: #E783FF;
+        height: 50px;
+        width: 50px;
+    }
+    #lb {
+        border: 2px solid black;
+        background-color: #E783FF;
+        height: 50px;
+        width: 50px;
+    }
+    #reset {
+        font-size: 2px;
+        box-shadow: none;
+        text-shadow: none;
+    }
+    #submit-password {
+        font-family: Times New Roman;
+        box-shadow: 2px 2px 10px #222;
+        text-shadow: none;
+    }
+    #submit-password:active {
+        font-family: Times New Roman;
+        box-shadow: none;
+        color: #fff;
+        background-color: orange;
+    }
+    #kk {
+        text-align: center;
+        text-decoration: 5px double underline;
+    }
+    h4 {
+        text-align: center;
+    }
+    h3 {
+        text-align: center;
+    }
+    p {
+        text-align: center;
+    }
+    #password {
+        border: 2px dashed black;
+    }
+    #password:hover {
+        border: 4px solid #1AB100;
+    }
+
+    .password-container {
+        margin: 0;
+    }
+    @keyframes slide {
+        0% {
+            background-image: linear-gradient(to right, red, orange, yellow, green, blue);
+        }
+        20% {
+            background-image: linear-gradient(to right, blue, red, orange, yellow, green);
+        }
+        40% {
+            background-image: linear-gradient(to right, green, blue, red, orange, yellow);
+        }
+        60% {
+            background-image: linear-gradient(to right, yellow, green, blue, red, orange);
+        }
+        80% {
+            background-image: linear-gradient(to right, orange, yellow, green, blue, red);
+        }
+        100% {
+            background-image: linear-gradient(to right, red, orange, yellow, green, blue);
+        }
+    }
+</style>
+<link rel="icon" href="/storage/emulated/0/DCIM/calculator.jpg">
+</head>
+<body onload="instructions()">
+<h6>INSTRUCTIONs!</h6>
+<h1 id="kk">CALCULATOR</h1>
+<p>
+A Calculator is the instrument in which we calculate numbers like 2+2=4 etc.
+</p>
+<h4>Here are are few operators of calculator.</h4>
+<pre>           (1)  +
+(2)  -
+(3)  *
+(4)  /
+(5) ()</pre>
+<h4>Following are usage of operators</h4>
+<p>
+no.1: - is used to subtract numbers like 3-4=-1 etc.
+<br>
+no.2: * is used to multiply numbers like 3*3=6 etc.
+<br>
+no.3: / is used to divide numbers like 3/3=1 etc.
+<br>
+no.4: + is used to add numbers like 3+3=6 etc.
+<br>
+no.5: () are two operators that are used to difference b/w two numbers like (-3)*(-3)=6
+</p>
+<br>
+<h3>Set password</h3>
+<p>
+set password is used to set password for your calcutor to secure him.If you set the password then close this page and open again to enter your set password.
+</p>
+<h3>SUBMIT password</h3>
+<p>
+submit password is used to submit your password that you set before.Enter the correct password that you enter before to enter the calculator to calculate numbers to easy your life!
+</p>
+<div class="password-container">
+<input type="password" id="password" placeholder="Enter password">
+<br>
+<button id="submit-password" onclick="ready()">SUBMIT</button>
+<button id="set-password-btn" style="display: none;">Set Password</button>
+</div>
+<div class="calculator-container" style="display: none;">
+<!-- Your calculator HTML code here -->
+<div>
+<button id="reset" onclick="reset()" value="reset Password">RESET PASSWORD!</button>
+</div>
+<div class="calculator">
+<h1 id="a">CALCULATOR</h1>
+<div id="d"></div>
+<output id="res"></output>
+<hr>
+<input type="text" id="display" disabled placeholder="0000000000000000">
+<div class="buttons">
+<button class="clear" value="clear">Clear ALL</button>
+<button class="number" value="7">7</button>
+<button class="number" value="8">8</button>
+<button class="number" value="9">9</button>
+<button class="operator" value="/">/</button>
+<button class="number" value="4">4</button>
+<button class="number" value="5">5</button>
+<button class="number" value="6">6</button>
+<button class="operator" value="*">x</button>
+<button class="number" value="1">1</button>
+<button class="number" value="2">2</button>
+<button class="number" value="3">3</button>
+<button class="operator" value="-">-</button>
+<button class="number" value="0">0</button>
+<button class="number" value="00">00</button>
+<button class="number" value="000">000</button>
+<button class="operator" value="+">+</button>
+<button id="rb" value="(">(</button>
+<button id="lb" value=")">)</button>
+<button class="operator" value=".">.</button>
+<button id="equal" value="=">=</button>
+</div>
+</div>
+</div>
+<script>
+let history = [];
+
+window.setInterval("fun1()", 5000);
+function fun1() {
+var c = parseInt(Math.random() * 1000000);
+document.getElementById('d').style.backgroundColor = "#" + c;
+console.log(c);
+}window.setInterval("fun2()", 1000);
+function fun2() {
+var d = new Date();
+var hours = d.getHours();
+var ampm = hours >= 12 ? 'PM': 'AM';
+hours = hours % 12;
+hours = hours ? hours: 12; // the hour '0' should be '12'
+var st = hours + ":" + d.getMinutes().toString().padStart(2, '0') + ":" + d.getSeconds().toString().padStart(2, '0') + " " + ampm;
+res.value = st;
+}
+const display = document.getElementById('display');
+const buttons = document.querySelectorAll('button');
+let expression = '';
+buttons.forEach(button => {
+button.addEventListener('click', () => {
+const value = button.value;
+if (value === 'clear') {
+expression = '';
+display.value = 'Data cleared----!';
+}
+else if (value === '=') {
+try {
+const result = eval(expression);
+history.push(`${expression} = ${result}`);
+display.value = result;
+expression = result.toString();
+} catch (error) {
+display.value = 'Math Error';
+expression = '';
+}
+} else {
+expression += value;
+display.value = expression;
+}
+});
+});
+const passwordInput = document.getElementById('password');
+const submitPasswordButton = document.getElementById('submit-password');
+const setPasswordButton = document.getElementById('set-password-btn');
+const calculatorContainer = document.querySelector('.calculator-container');
+const passwordContainer = document.querySelector('.password-container');
+let password = localStorage.getItem('password');
+
+if (password === null) {
+passwordContainer.innerHTML = '<input type="password" id="new-password" placeholder="Set password"><button id="set-password">Set</button>';
+const setPassword = document.getElementById('set-password');
+setPassword.addEventListener('click', () => {
+const newPassword = document.getElementById('new-password').value;
+localStorage.setItem('password', newPassword);
+password = newPassword;
+passwordContainer.innerHTML = '<input type="password" id="password" placeholder="Enter password"><button id="submit-password">Submit</button>';
+submitPasswordButton = document.getElementById('submit-password');
+passwordInput = document.getElementById('password');
+submitPasswordButton.addEventListener('click', checkPassword);
+});
+} else {
+submitPasswordButton.addEventListener('click', checkPassword);
+}
+
+function checkPassword() {
+if (passwordInput.value === password) {
+passwordContainer.style.display = 'none';
+calculatorContainer.style.display = 'block';
+} else {
+const username = document.getElementById("username").value;
+alert('your entered password is incorrect please enter the correct password!')
+}
+}
+
+function reset() {
+localStorage.removeItem('password');
+}
+
+function  ready(){
+    
+}
+
+function instructions() {
+alert('Before opening the calculator please see the instructions first!')
+}
+</script>
+</body>
+</html>
